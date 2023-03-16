@@ -24,7 +24,7 @@ input{
 
 button{
   background-color: white;
-  /* border-color: white; */
+  border: none;
 }
 
 .weatherArea{

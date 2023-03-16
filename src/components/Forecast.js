@@ -8,7 +8,7 @@ function Forecast({weather:{icon, temp, details}, items}){
                 {items.map(item =>(
                     <div>
                         <p>{item.time}</p>
-                        <img src={iconURLFromCode(item.icon)} width="30%"/>
+                        <img src={iconURLFromCode(item.icon)} width="65rem"/>
                         <p>{`${item.temp.toFixed()}°`}</p>
 
                     </div>
