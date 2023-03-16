@@ -1,24 +1,74 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import Temperature from './components/Temperature';
+import Clothes from './components/Clothes';
+import Forecast from './components/Forecast';
+import getWeatherData from './services/weatherService';
+import getFormattedWeatherData from './services/weatherService';
+import ReadyOrNot from './components/ReadyOrNot';
 
 function App() {
+
+  const [query, setQuery] = useState({q: "london"})
+  const [units, setUnits] = useState("metric")
+  const [weather, setWeather] = useState(null)
+
+  //fetch new weather everytime:
+  //1. first time it loads
+  //2. everytime location or unit is changed
+  useEffect(() => {
+    const fetchWeather = async () => {
+      await getFormattedWeatherData({...query, units}).then((data) => {setWeather(data);});
+
+    };
+  
+    fetchWeather().then(console.log(weather));
+    
+  }, [query, units]);
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      
+      <section className="flex-container">
+        <div className="topbar">
+          <button> {/*image*/}
+            London
+            </button>
+
+          <button>Add timetable</button>
+        </div>
+
+        {weather && (
+          //if weather is not null. if weather exists
+        <div className='weatherArea'>
+          <div className="important">
+            <div id="temp">
+              <Temperature weather ={weather}/>
+            </div>
+
+            <div id="clothes">
+              <Clothes weather={weather}/>
+            </div>
+          </div>
+
+          <div id="forecast">
+            {console.log(weather)}
+            <Forecast weather ={weather} items={weather.hourly}/>
+          </div>
+          
+          <div id="foot">
+            <ReadyOrNot weather={weather}/>
+          </div>
+
+        </div>
+        )}
+
+      </section>
+
+    </React.Fragment>
   );
 }
 

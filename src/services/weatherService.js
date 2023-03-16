@@ -1,0 +1,68 @@
+import { DateTime } from "luxon";
+
+const API_KEY = "3771b73c35ce87aaaac32c781f8eaa5f"
+const BASE_URL = "https://api.openweathermap.org/data/2.5"
+
+//function to get data
+const getWeatherData = (infoType, searchParam) => {
+    const url = new URL(BASE_URL + '/' + infoType)
+    url.search = new URLSearchParams({...searchParam, appid:API_KEY})
+
+    return fetch(url)
+        .then((res) => res.json())
+        //.then((data) => data);
+};
+
+//export default getWeatherData;
+
+
+const formatCurrentWeather = (data) => {
+    const {
+        coord: {lat, lon},
+        main: {temp},
+        name,
+        sys: {country},
+        weather
+    } = data
+    //const {main: details} = weather[0]
+    return {lat, lon, temp, name, country, weather}
+}
+
+const formatForecastWeather = (data) => {
+    let {timezone, daily, hourly} = data
+    //showing only 3 forecasts. start from 1 becuase we want to show from next hour
+    hourly = hourly.slice(1,4).map(d =>{
+        return {
+            title: formatToLocalTime(d.dt, timezone, 'hh:mm a'),
+            temp: d.temp,
+            icon:d.weather[0].icon,
+            main:d.weather[0].main
+        }
+    });
+
+    return {timezone, hourly}
+};
+
+
+const getFormattedWeatherData = async (searchParam) => {
+    const formattedCurrentWeather = await getWeatherData('weather', searchParam).then(formatCurrentWeather)
+    
+    const {lat, lon} = formattedCurrentWeather
+
+    const formattedForecastWeather = await getWeatherData('onecall', 
+    {lat, lon, 
+    exclude: "current,minutely,alerts", 
+    units: searchParam.units})
+    .then(formatForecastWeather)
+
+    return {...formattedCurrentWeather, ...formattedForecastWeather};
+}
+
+//Luxon use
+//params: seconds, timezone, format -> if you dont pass a format it has a defalt
+const formatToLocalTime = (secs, zone, format = "cccc, dd LLL yyyy' | Local time:'hh:mm a") => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
+
+const iconURLFromCode = (code) => `https://openweathermap.org/img/wn/${code}@2x.png`
+
+export default getFormattedWeatherData;
+export {formatToLocalTime, iconURLFromCode}
