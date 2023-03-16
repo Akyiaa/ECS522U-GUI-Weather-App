@@ -11,34 +11,32 @@ function Clothes({weather:{temp,weather:{icon}}}){
         const clotheRecomImg = () =>{
             //console.log(`temp is ${ temp}!`)
             if (icon == "13d"){
-                return <div>
+                return <div className="specificClothe">
                 <img src={boots} width="100%"/>
                 </div>
             }
             
             if (icon == "09d"){
-                return <div>
+                return <div className="specificClothe">
                 <img src={umbrella} width="100%"/>
                 </div>
             }
 
 
             if (temp < 5){
-                return <div>
+                return <div className="specificClothe">
                     <img src={jacket} width="100%"/>
                 </div>
             }
 
             if (temp < 13){
-                return <div>
+                return <div className="specificClothe">
                     <img src={scarf} width="100%"/>
                 </div>
             }
 
             if (temp > 12 && temp <18){
-                return <div>
-                    <img src={smallcoat} width="100%"/>
-                </div>
+                return(<img src={smallcoat} width="100%"/>)
             }
 
             
