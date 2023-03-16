@@ -74,7 +74,7 @@ function App() {
             </div>
           </div>
 
-          <div id="foot">
+          <div id="ready">
             <ReadyOrNot weather={weather}/>
           </div>
 

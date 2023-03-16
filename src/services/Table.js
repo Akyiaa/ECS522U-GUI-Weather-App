@@ -18,8 +18,8 @@ function Table({day, items}){
         //IPA meeting 9:00 -9:15
         //-> show under 9
         //console.log(selectedDay.length)
-        console.log("test!")
-        for(var k = 0; k<6; k++){
+        //console.log("test!")
+        for(var k = 0; k<selectedDay.length; k++){
             //console.log(selectedDay[0].startTime)
             //array to split time -> how to end the showing of schedule?
             let selStart = selectedDay[k].startTime.split(":")
@@ -33,7 +33,7 @@ function Table({day, items}){
             //currentHour = 7, 8, 9, 10
             //start = 8:45
             //end = 10
-            console.log("k " + k)
+            console.log("k: " + k)
             //console.log("select: " + selectedDay.length)
             if (selStartHour == currentHour){
                 console.log("startHour: " + selStartHour +" == currentHour: " + currentHour)
@@ -41,20 +41,30 @@ function Table({day, items}){
                     console.log("endHour: " + selEndHour +" == currentHour: " + currentHour)
                     finalArray.push(`${selectedDay[k].title}`)
                 }
-                else{
+                else{//what if the end time is diff
                     console.log("end and start not equal")
-                    for(var x = selStartHour; x<=selEndHour; x++){
-                        console.log("for loop: " + x)
-                        if (x <= currentHour){
-                            console.log("x: " + x +" <= currentHour: " + currentHour)
+                    // for(var x = selStartHour; x<=selEndHour; x++){
+                    //     console.log("for loop: " + x)
+                    //     if (x <= currentHour){
+                    //         console.log("x: " + x +" <= currentHour: " + currentHour)
+                    //         finalArray.push(`${selectedDay[k].title}`)
+                    //     }
+                    // }
+
+                    for(var x = currentHour; x<=currentHour+2; x++){
+                        if(x > selEndHour){
+                            break;
+                        }
+                        else{
                             finalArray.push(`${selectedDay[k].title}`)
                         }
                     }
                 }
-                console.log("finalArray:" + finalArray)
-                return <p>{finalArray}</p>;
             }
         } 
+        
+        console.log("finalArray:" + finalArray)
+        return <p>{finalArray}</p>;
     }
     return(matchCond())
 }
@@ -107,7 +117,7 @@ const Mon = [
     {
         title: "OS Lecture",
         startTime: "21:00",
-        endTime: "22:00",
+        endTime: "23:00",
     },
     {
         title: "GUI Lab",
