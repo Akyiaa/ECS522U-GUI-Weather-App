@@ -31,16 +31,22 @@ const formatCurrentWeather = (data) => {
 const formatForecastWeather = (data) => {
     let {timezone, daily, hourly} = data
     //showing only 3 forecasts. start from 1 becuase we want to show from next hour
+    daily = daily.slice(0,1).map(d =>{
+        return {
+            title: formatToLocalTime(d.dt, timezone, 'ccc')
+        }
+    });
+
     hourly = hourly.slice(1,4).map(d =>{
         return {
-            title: formatToLocalTime(d.dt, timezone, 'hh:mm a'),
+            time: formatToLocalTime(d.dt, timezone, 'hh:mm a'),
             temp: d.temp,
             icon:d.weather[0].icon,
             main:d.weather[0].main
         }
     });
 
-    return {timezone, hourly}
+    return {timezone, daily, hourly}
 };
 
 

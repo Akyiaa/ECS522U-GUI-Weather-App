@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Temperature from './components/Temperature';
@@ -7,6 +6,8 @@ import Forecast from './components/Forecast';
 import getWeatherData from './services/weatherService';
 import getFormattedWeatherData from './services/weatherService';
 import ReadyOrNot from './components/ReadyOrNot';
+import Table from './services/Table';
+import location from './icons/location.jpeg'
 
 function App() {
 
@@ -34,11 +35,12 @@ function App() {
       
       <section className="flex-container">
         <div className="topbar">
-          <button> {/*image*/}
-            London
-            </button>
+          <button id = "cityloc"> 
+          <img src={location} />
+          London
+          </button>
 
-          <button>Add timetable</button>
+          <button id="but">Add timetable</button>
         </div>
 
         {weather && (
@@ -54,11 +56,24 @@ function App() {
             </div>
           </div>
 
-          <div id="forecast">
-            {console.log(weather)}
-            <Forecast weather ={weather} items={weather.hourly}/>
-          </div>
           
+            <div id="today">
+              <p>Today's Forecast:</p>
+            </div>
+
+            <div id="matchingForecast">
+            <div className='center'>
+              <Forecast weather ={weather} items={weather.hourly}/>
+
+              <section id="time-table">
+                {/* {console.log(weather)}
+                {console.log(weather.daily)}
+                {console.log(weather.hourly)} */}
+                <Table day={weather.daily} items={weather.hourly}/>
+              </section>
+            </div>
+          </div>
+
           <div id="foot">
             <ReadyOrNot weather={weather}/>
           </div>
