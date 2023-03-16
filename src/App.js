@@ -63,7 +63,7 @@ function App() {
 
             <div id="matchingForecast">
             <div className='center'>
-              <Forecast weather ={weather} items={weather.hourly}/>
+              <Forecast items={weather.hourly}/>
 
               <section id="time-table">
                 {/* {console.log(weather)}
