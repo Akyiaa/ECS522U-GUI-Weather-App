@@ -6,7 +6,7 @@ import Forecast from './components/Forecast';
 import getWeatherData from './services/weatherService';
 import getFormattedWeatherData from './services/weatherService';
 import ReadyOrNot from './components/ReadyOrNot';
-import Table from './services/Table';
+//import Table from './services/Table';
 import location from './icons/location.jpeg'
 
 function App() {
@@ -63,14 +63,7 @@ function App() {
 
             <div id="matchingForecast">
             <div className='center'>
-              <Forecast items={weather.hourly}/>
-
-              <section id="time-table">
-                {/* {console.log(weather)}
-                {console.log(weather.daily)}
-                {console.log(weather.hourly)} */}
-                <Table day={weather.daily} items={weather.hourly}/>
-              </section>
+              <Forecast day={weather.daily} items={weather.hourly}/>
             </div>
           </div>
 
