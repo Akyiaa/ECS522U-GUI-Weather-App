@@ -1,13 +1,11 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import Temperature from './components/Temperature';
+import location from './icons/location.jpeg'
 import Clothes from './components/Clothes';
 import Forecast from './components/Forecast';
-import getWeatherData from './services/weatherService';
-import getFormattedWeatherData from './services/weatherService';
 import ReadyOrNot from './components/ReadyOrNot';
-//import Table from './services/Table';
-import location from './icons/location.jpeg'
+import Temperature from './components/Temperature';
+import getFormattedWeatherData from './services/weatherService';
 
 function App() {
 
@@ -33,14 +31,14 @@ function App() {
   return (
     <React.Fragment>
       
-      <section className="flex-container">
+      <section className="main-container">
         <div className="topbar">
           <button id = "cityloc"> 
-          <img src={location} />
+          <img src={location}/>
           London
           </button>
 
-          <button id="but">Add timetable</button>
+          <button id="add-table">Add timetable</button>
         </div>
 
         {weather && (
@@ -61,15 +59,15 @@ function App() {
               <p>Today's Forecast:</p>
             </div>
 
-            <div id="matchingForecast">
-            <div className='center'>
-              <Forecast day={weather.daily} items={weather.hourly}/>
+            <div id="forecast-area">
+              <div className='center'>
+                <Forecast day={weather.daily} items={weather.hourly}/>
+              </div>
             </div>
-          </div>
 
-          <div id="ready">
+          <footer id="ready">
             <ReadyOrNot weather={weather}/>
-          </div>
+          </footer>
 
         </div>
         )}

@@ -4,31 +4,56 @@ body{
   width: 60%;
 }
 
-.flex-container{
+.main-container{
   display: block;
   background-color: #68AEFF;
   padding: 5% 0;
 }
 
-.flex-container > div{
+.main-container > div{
   background-color: #68AEFF;
 }
 
-input{
-  background-color: white;
-}
-
+/*TOP OF PAGE*/
 button{
   background-color: white;
   border: none;
 }
 
+#cityloc{
+  padding: 1%;
+  font-weight: bold;
+  border-radius: 14px 14px;
+  font-size: 1.5em;
+  width: 20%;
+  position: absolute;
+  left: 15%;
+}
+
+#cityloc > img{
+  width: 2em;
+  padding-right: 8%;
+}
+
+#add-table{
+  padding: 1%;
+  font-weight: bold;
+  border-radius: 14px 14px;
+  font-size: 1.3em;
+  width: 20%;
+  position: absolute;
+  right: 32%;
+}
+
+
+/*DISPLAY OF ALL WEATHER INFO*/
 .weatherArea{
   background-color: #68AEFF;
   padding: 0;
   margin: 0;
 }
 
+/*MOST IMPORTANT BIG INFO*/
 .important{
   display: flex;
   background-color: #68AEFF;
@@ -54,50 +79,22 @@ button{
   width: 30%;
 }
 
-
-#ready{
-  background-color: #BBF383;
-  border: 5px solid;
-  border-radius: 40px 40px;
-  border-color: #BBF383;
-  font-size: 3vw;
-  font-weight: bold;
-  text-align: center;
-  margin: 2% 30%;
-}
-
-/*top of page*/
-#but{
-  padding: 1%;
-  font-weight: bold;
-  border-radius: 14px 14px;
-  font-size: 1.3em;
-  width: 20%;
-  position: absolute;
-  right: 32%;
-}
-
-#cityloc{
-  padding: 1%;
-  font-weight: bold;
-  border-radius: 14px 14px;
-  font-size: 1.5em;
-  width: 20%;
-  position: absolute;
-  left: 15%;
-}
-
-#cityloc > img{
-  width: 2em;
-  padding-right: 8%;
-}
-
 #today{
   color:white;
   font-weight: bold;
   font-size: 2em;
   text-align: left;
   padding-left: 10%;
+}
+
+/*Daily/Timetable FORECAST DISPLAY AREA*/
+#forecast-area{
+  background-color: #D9D9D980;
+}
+
+.center{
+  margin: auto;
+  width: 50%;
 }
 
 /*IN FORECAST PAGE*/
@@ -122,13 +119,15 @@ button{
   font-size: 2.3vw;
 }
 
-#matchingForecast{
-  background-color: #D9D9D980;
+
+/*FOOTER - Ready or not message*/
+#ready{
+  background-color: #BBF383;
+  border: 5px solid;
+  border-radius: 40px 40px;
+  border-color: #BBF383;
+  font-size: 2.3vw;
+  font-weight: bold;
+  text-align: center;
+  margin: 2% 30%;
 }
-
-.center{
-  margin: auto;
-  width: 50%;
-}
-
-
