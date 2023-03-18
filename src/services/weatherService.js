@@ -10,10 +10,7 @@ const getWeatherData = (infoType, searchParam) => {
 
     return fetch(url)
         .then((res) => res.json())
-        //.then((data) => data);
 };
-
-//export default getWeatherData;
 
 
 const formatCurrentWeather = (data) => {
@@ -24,7 +21,7 @@ const formatCurrentWeather = (data) => {
         sys: {country},
         weather
     } = data
-    //const {main: details} = weather[0]
+    
     return {lat, lon, temp, name, country, weather}
 }
 
