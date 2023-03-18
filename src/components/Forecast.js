@@ -18,7 +18,7 @@ function Forecast({day, items}){
         return(
             <section className="forecast-container">
                 {items.slice(0,3).map(item =>(
-                    <div>
+                    <div className='center'>
                         <p>{item.time}</p>
                         <img src={iconURLFromCode(item.icon)} width="100vw"/>
                         <p>{`${item.temp.toFixed()}°`}</p>
@@ -29,12 +29,12 @@ function Forecast({day, items}){
     }
 
     //If no timetable for the day
-    if(selectedDay == undefined){
+    if(selectedDay == undefined || selectedDay == null){
         return(normalForecast())
     }
 
     for(var k=0; k<selectedDay.length; k++){//for each event in the day
-        console.log("k: " + k)
+        //console.log("k: " + k)
         let accumTemp = [] //contains all the temp for the time period
         let accumIcon = [] 
         let accumID = []
@@ -44,7 +44,7 @@ function Forecast({day, items}){
         
         let selStart = selectedDay[k].startTime.split(":")
         let selEnd = selectedDay[k].endTime.split(":")
-        console.log("selStart: " + selStart + "/ selEnd: " + selEnd)
+        //console.log("selStart: " + selStart + "/ selEnd: " + selEnd)
         
         //get first index which holds hour; eg '09', '23'
         let selStartHour = selStart[0]
@@ -54,11 +54,11 @@ function Forecast({day, items}){
         //if endTime is not less than currentTime
         //if time is 9am, can't show for something that ends at 8am
         if(selEndHour >= currentHour){
-            console.log("end Hour: " + selEndHour + " is greater/= to current hour: " + currentHour)
+            //console.log("end Hour: " + selEndHour + " is greater/= to current hour: " + currentHour)
             //get the information from currentTime to endTime
             //from 9-11
             if(selStartHour == selEndHour){
-                console.log("EQUAL")
+                //console.log("EQUAL")
                 accumTemp.push(items[selStartHour].temp)
                 accumIcon.push(items[selStartHour].icon)
                 accumID.push(items[selStartHour].id)
@@ -124,17 +124,17 @@ function Forecast({day, items}){
     //RETURNING ACCUMULATED INFO
     console.log(finalArray)
     if (finalArray.length == 0){
-        console.log("no timetable info to display yet")
+        //console.log("no timetable info to display yet")
         return(normalForecast())
     }
     else{
-        console.log("info displayed!" )
-        console.log(items)
+        //console.log("info displayed!" )
+        //console.log(items)
         //return(normalForecast())
         return(
             <section className="forecast-container">
                 {finalArray.map(f =>(
-                    <div>
+                    <div className='center'>
                         <p>{f.temp}</p>
                         <img src={iconURLFromCode(f.icon)} width="100vw"/>
                         <p>{f.title}</p>
