@@ -34,7 +34,7 @@ function Forecast({day, items}){
     }
 
     for(var k=0; k<selectedDay.length; k++){//for each event in the day
-        //console.log("k: " + k)
+        console.log("k: " + k)
         let accumTemp = [] //contains all the temp for the time period
         let accumIcon = [] 
         let accumID = []
@@ -45,6 +45,7 @@ function Forecast({day, items}){
         let selStart = selectedDay[k].startTime.split(":")
         let selEnd = selectedDay[k].endTime.split(":")
         console.log("selStart: " + selStart + "/ selEnd: " + selEnd)
+        
         //get first index which holds hour; eg '09', '23'
         let selStartHour = selStart[0]
         let selEndHour = selEnd[0]
@@ -53,24 +54,31 @@ function Forecast({day, items}){
         //if endTime is not less than currentTime
         //if time is 9am, can't show for something that ends at 8am
         if(selEndHour >= currentHour){
-            //console.log("end Hour: " + selEndHour + " is greater/= to current hour: " + currentHour)
+            console.log("end Hour: " + selEndHour + " is greater/= to current hour: " + currentHour)
             //get the information from currentTime to endTime
             //from 9-11
-            for(var x=currentHour; x<=selEndHour; x++){
-                //console.log("for loop between: " + currentHour + " and " + selEndHour)
-                for(var j=0; j<=currentArray.length; j++){
-                    if(currentArray[j] > selEndHour){
-                        break
-                    }
-                    else{
-                        //console.log(items[j])
-                        accumTemp.push(items[j].temp)
-                        accumIcon.push(items[j].icon)
-                        accumID.push(items[j].id)
-                    }
+            if(selStartHour == selEndHour){
+                console.log("EQUAL")
+                accumTemp.push(items[selStartHour].temp)
+                accumIcon.push(items[selStartHour].icon)
+                accumID.push(items[selStartHour].id)
+            }
+            else{
+                console.log("ELSE: start:- " + selStartHour + " end:- " + selEndHour)
+                for(var m= selStartHour; m<=13; m++){
+                    console.log("m: " + m)
+                }
+                for(var x=selStartHour; x<=selEndHour; x++){
+                    //console.log("for loop between: " + selStartHour + " and " + selEndHour)
+                    console.log("x: " + x)
+                    //console.log(items[x])
+                    accumTemp.push(items[x].temp)
+                    accumIcon.push(items[x].icon)
+                    accumID.push(items[x].id)
                 }
             }
-
+            
+            console.log("accumTemp: " + accumTemp)
             //finding average temp
             let total = 0
             //console.log("accvumTemp " + accumTemp)
@@ -120,10 +128,11 @@ function Forecast({day, items}){
     console.log(finalArray)
     if (finalArray.length == 0){
         console.log("no timetable info to display yet")
-        return(normalForecast())
+        //return(normalForecast())
     }
     else{
-        console.log("!info to display yet" )
+        console.log("info displayed!" )
+        console.log(items)
         //return(normalForecast())
         return(
             <section className="forecast-container">

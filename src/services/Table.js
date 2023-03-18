@@ -70,7 +70,7 @@ const Mon = [
         },
         {
             title: "GUI Lab",
-            startTime: "20:00",
+            startTime: "18:00",
             endTime: "21:15",
         }
         ]
