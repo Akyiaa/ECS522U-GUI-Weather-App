@@ -60,8 +60,8 @@ const Mon = [
     const Sat = [
         {
             title: "OS Lecture",
-            startTime: "9:00",
-            endTime: "12:00",
+            startTime: "5:00",
+            endTime: "10:00",
         },
         {
             title: "GUI Lab",
@@ -69,7 +69,7 @@ const Mon = [
             endTime: "12:15",
         },
         {
-            title: "GUI Lab",
+            title: "IPA Meeting",
             startTime: "18:00",
             endTime: "21:15",
         }

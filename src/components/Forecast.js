@@ -17,7 +17,7 @@ function Forecast({day, items}){
     const normalForecast = () =>{
         return(
             <section className="forecast-container">
-                {items.map(item =>(
+                {items.slice(0,3).map(item =>(
                     <div>
                         <p>{item.time}</p>
                         <img src={iconURLFromCode(item.icon)} width="100vw"/>
@@ -65,12 +65,10 @@ function Forecast({day, items}){
             }
             else{
                 console.log("ELSE: start:- " + selStartHour + " end:- " + selEndHour)
-                for(var m= selStartHour; m<=13; m++){
-                    console.log("m: " + m)
-                }
-                for(var x=selStartHour; x<=selEndHour; x++){
+                //works when have same num of digits. eg 7-8, 18-21
+                for(var x=Number(selStartHour); x<=Number(selEndHour); x++){
                     //console.log("for loop between: " + selStartHour + " and " + selEndHour)
-                    console.log("x: " + x)
+                    //console.log("x: " + x)
                     //console.log(items[x])
                     accumTemp.push(items[x].temp)
                     accumIcon.push(items[x].icon)
@@ -114,7 +112,6 @@ function Forecast({day, items}){
                         break
                     }
                 }
-
             }
 
             finalArray.push({title: `${selectedDay[k].title}`, time: `${selectedDay[k].startTime} - ${selectedDay[k].endTime}`, icon: `${mainIcon}`, temp: `${avgTemp.toFixed()}°`})
@@ -128,7 +125,7 @@ function Forecast({day, items}){
     console.log(finalArray)
     if (finalArray.length == 0){
         console.log("no timetable info to display yet")
-        //return(normalForecast())
+        return(normalForecast())
     }
     else{
         console.log("info displayed!" )
@@ -141,7 +138,7 @@ function Forecast({day, items}){
                         <p>{f.temp}</p>
                         <img src={iconURLFromCode(f.icon)} width="100vw"/>
                         <p>{f.title}</p>
-                        <p>{f.time}</p>
+                        <p id="time-size">{f.time}</p>
                     </div>
                 ))}
             </section>
