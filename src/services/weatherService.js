@@ -38,9 +38,11 @@ const formatForecastWeather = (data) => {
         return {
             time: formatToLocalTime(d.dt, timezone, 'HH:mm'),
             temp: d.temp,
-            icon:d.weather[0].icon,
-            main:d.weather[0].main,
-            id: d.weather[0].id
+            icon: d.weather[0].icon,
+            main: d.weather[0].main,
+            desc: d.weather[0].description,
+            humid: d.humidity//,
+            //wind: d.wind.speed
         }
     });
 

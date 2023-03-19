@@ -1,6 +1,7 @@
 import React from "react";
 import { iconURLFromCode } from "../services/weatherService";
 import {week} from "../services/Table";
+import {Link} from "react-router-dom";
 
 //SHOULD HOURLY SLICE BE 0-24-> AVAILABLE FOR 24 HOURS OF THE DAY?
 function Forecast({day, items}){
@@ -11,8 +12,8 @@ function Forecast({day, items}){
     //items -> contains time, title, icon etc
     let forecastTime = items.map(item =>(item.time))
     let currentArray = forecastTime[0].split(":")
-    //console.log(day[0].title)
-    
+    //console.log(day[0].title)-
+  
 
     const normalForecast = () =>{
         return(
@@ -20,11 +21,12 @@ function Forecast({day, items}){
                 {items.slice(0,3).map(item =>(
                     <div className='center'>
                         <p>{item.time}</p>
-                        <img src={iconURLFromCode(item.icon)} width="100vw"/>
+                        {/* <Link to={{pathname:"/displayInfo", state:{item: `${item}`}}}><img src={iconURLFromCode(item.icon)} width="100vw"/></Link> */}
+                        <Link to={{pathname:"/displayInfo", search:`item=${JSON.stringify({item})}`}}><img src={iconURLFromCode(item.icon)} width="100vw"/></Link>
                         <p>{`${item.temp.toFixed()}°`}</p>
                     </div>
                 ))}
-        </section>
+            </section>
         )
     }
 
@@ -37,7 +39,7 @@ function Forecast({day, items}){
         //console.log("k: " + k)
         let accumTemp = [] //contains all the temp for the time period
         let accumIcon = [] 
-        let accumID = []
+        let accumMain = []
         //console.log(items)
         let avgTemp;
         let mainIcon;
@@ -61,7 +63,7 @@ function Forecast({day, items}){
                 //console.log("EQUAL")
                 accumTemp.push(items[selStartHour].temp)
                 accumIcon.push(items[selStartHour].icon)
-                accumID.push(items[selStartHour].id)
+                accumMain.push(items[selStartHour].main)
             }
             else{
                 console.log("ELSE: start:- " + selStartHour + " end:- " + selEndHour)
@@ -72,11 +74,11 @@ function Forecast({day, items}){
                     //console.log(items[x])
                     accumTemp.push(items[x].temp)
                     accumIcon.push(items[x].icon)
-                    accumID.push(items[x].id)
+                    accumMain.push(items[x].main)
                 }
             }
             
-            console.log("accumTemp: " + accumTemp)
+            //console.log("accumTemp: " + accumTemp)
             //finding average temp
             let total = 0
             //console.log("accvumTemp " + accumTemp)
@@ -87,26 +89,21 @@ function Forecast({day, items}){
             avgTemp = total/accumTemp.length
             //console.log("avg: " + avgTemp)
 
-            //find 'main' main
+            //find main Icon
             const allEqual = accumIcom => accumIcon.every( v => v === accumIcon[0] )
             if(allEqual){ //if true
                 mainIcon = accumIcon[0]
             }
             else{//Choose worst
-                //3->5->6->2
-                for(var g=0; g<accumID.length; g++){
-                    if (accumID[g].charAt(0) == 2){//thunderstorm
-                        mainIcon = accumIcon[g]
-                    }
-                    else if(accumID[g].charAt(0) == 6){//snow
-                        mainIcon = accumIcon[g]
-                    }
-                    else if(accumID[g].charAt(0) == 5){//rain
-                        mainIcon = accumIcon[g]
-                    }
-                    else if(accumID[g].charAt(0) == 3){//drizzle
-                        mainIcon = accumIcon[g]
-                    }
+                for(var g=0; g<accumMain.length; g++){
+                    if (accumMain[g] == "thunderstorm"){//thunderstorm
+                        mainIcon = accumIcon[g] }
+                    else if(accumMain[g] == "snow"){//snow
+                        mainIcon = accumIcon[g] }
+                    else if(accumMain[g] == "rain"){//rain
+                        mainIcon = accumIcon[g] }
+                    else if(accumMain[g] == "drizzle"){//drizzle
+                        mainIcon = accumIcon[g] }
                     else{
                         mainIcon = accumIcon[0]
                         break

@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import location from './icons/location.jpeg'
+import location from './icons/location.png'
 import Clothes from './components/Clothes';
 import Forecast from './components/Forecast';
 import ReadyOrNot from './components/ReadyOrNot';
@@ -53,17 +53,14 @@ function App() {
               <Clothes weather={weather}/>
             </div>
           </div>
-
           
-            <div id="today">
-              <p>Today's Forecast:</p>
-            </div>
+          <p id="today">Today's Forecast:</p>
 
-            <div id="forecast-area">
-              <div className='center'>
-                <Forecast day={weather.daily} items={weather.hourly}/>
-              </div>
+          <div id="forecast-area">
+            <div className='center'>
+            <Forecast day={weather.daily} items={weather.hourly}/>
             </div>
+          </div>
 
           <footer id="ready">
             <ReadyOrNot weather={weather}/>

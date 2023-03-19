@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Kadwa&display=swap');
+@import url('https://fonts.googleapis.com/css?family=JejuMyeongjo&display=swap');
+
 body{
   margin: 5% 10%;
   background-color: white;
   width: 60%;
+  font-family: Kadwa, monospace;
 }
 
 .main-container{
@@ -10,38 +14,35 @@ body{
   padding: 5% 0;
 }
 
-.main-container > div{
-  background-color: #68AEFF;
-}
 
 /*TOP OF PAGE*/
 button{
-  background-color: white;
+  background-color: rgb(245,245,245);
   border: none;
+  font-family: Kadwa, monospace;
 }
 
-#cityloc{
+/*home-btn in DISPLAY PAGE*/
+#cityloc, #add-table, #home-btn{
   padding: 1%;
-  font-weight: bold;
-  border-radius: 14px 14px;
-  font-size: 1.5em;
   width: 20%;
   position: absolute;
+  border-radius: 14px 14px;
+}
+
+#cityloc, #home-btn{
+  font-size: 1.3em;
+  font-weight: bold;
   left: 15%;
 }
 
 #cityloc > img{
-  width: 2em;
+  width: 0.6em;
   padding-right: 8%;
 }
 
 #add-table{
-  padding: 1%;
-  font-weight: bold;
-  border-radius: 14px 14px;
   font-size: 1.3em;
-  width: 20%;
-  position: absolute;
   right: 32%;
 }
 
@@ -56,7 +57,6 @@ button{
 /*MOST IMPORTANT BIG INFO*/
 .important{
   display: flex;
-  background-color: #68AEFF;
 }
 
 #temp{
@@ -68,6 +68,7 @@ button{
   font-size: 20vw;
   font-weight: lighter;
   color: white;
+  font-family: JejuMyeongjo, monospace;
 }
 
 #clothes{
@@ -85,6 +86,7 @@ button{
   font-size: 2em;
   text-align: left;
   padding-left: 10%;
+  margin: 0px;
 }
 
 /*Daily/Timetable FORECAST DISPLAY AREA*/
@@ -130,4 +132,80 @@ button{
   font-weight: bold;
   text-align: center;
   margin: 2% 30%;
+}
+
+/*DISPLAY PAGE*/
+#display{
+  background-color: #68AEFF;
+  padding: 5% 5%;
+}
+
+#home-btn > a:link, a:visited{
+  text-decoration: none;
+  color: black;
+}
+
+#display-top{
+  /* display: flex; */
+  color: white;
+  font-weight: bold;
+}
+
+#display-top > p{
+  position: absolute;
+  right: 38%;
+  font-size: 2.7vw;
+}
+
+#main{
+  top: 24%;
+}
+
+#main-time{
+  top: 29%;
+}
+
+#display-main{
+  margin-top: 20%;
+}
+
+#display-loc{
+  width: 90%;
+  border-radius: 13px 13px;
+  font-size: 3vw;
+  margin-left: 5%;
+}
+
+#display-loc > img{
+  width: 3.5%;
+  padding-right: 3%;
+}
+
+
+#display-tempfore{
+  color: white;
+  font-weight: bold;
+  padding: 1em;
+  font-size: 3vw;
+}
+
+#display-tempfore > p{
+  margin: 10px 0;
+  font-family: Kadwa;
+}
+
+#display-extra{
+  background-color: rgb(245,245,245);
+  border-radius: 10px 10px;
+  padding: 5%;
+  font-size: 2.5vw;
+  margin-bottom: 5%;
+}
+
+#display-extra > p{
+  margin: 2% 0;
+}
+
+.right-align{
+  float: right;
 }
