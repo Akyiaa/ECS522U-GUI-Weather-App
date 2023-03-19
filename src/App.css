@@ -24,7 +24,6 @@ button{
 
 /*home-btn in DISPLAY PAGE*/
 #cityloc, #add-table, #home-btn{
-  padding: 1%;
   width: 20%;
   position: absolute;
   border-radius: 14px 14px;
@@ -42,8 +41,8 @@ button{
 }
 
 #add-table{
-  font-size: 1.3em;
-  right: 32%;
+  font-size: 1em;
+  right: 33%;
 }
 
 
@@ -92,6 +91,8 @@ button{
 /*Daily/Timetable FORECAST DISPLAY AREA*/
 #forecast-area{
   background-color: #D9D9D980;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .center{
@@ -99,7 +100,7 @@ button{
   width: 50%;
 }
 
-/*IN FORECAST PAGE*/
+/***IN FORECAST PAGE***/
 .forecast-container {
   display: flex;
   justify-content: center;
@@ -126,7 +127,7 @@ button{
 #ready{
   background-color: #BBF383;
   border: 5px solid;
-  border-radius: 40px 40px;
+  border-radius: 20px 20px;
   border-color: #BBF383;
   font-size: 2.3vw;
   font-weight: bold;
@@ -134,7 +135,8 @@ button{
   margin: 2% 30%;
 }
 
-/*DISPLAY PAGE*/
+
+/****DISPLAY PAGE*****/
 #display{
   background-color: #68AEFF;
   padding: 5% 5%;
@@ -158,11 +160,11 @@ button{
 }
 
 #main{
-  top: 24%;
+  top: 26%;
 }
 
 #main-time{
-  top: 29%;
+  top: 31%;
 }
 
 #display-main{
