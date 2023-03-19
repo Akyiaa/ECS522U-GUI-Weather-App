@@ -1,6 +1,6 @@
 # 🌞 GUI Weather App
 
-For my Year 2 GUI Module, I created a weather app using mainly JavaScript with React, HTML and CSS.\
+For my Year 2 GUI Module, I created a weather app using mainly JavaScript with React, HTML and CSS.
 
 The app shows the weather for certain time specified by a pre-entered timetable. On days where there are no events on the timetable, or after all events on the timetable have been completed, the normal hourly forecast is shown. 
 
