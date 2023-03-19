@@ -2,6 +2,7 @@
 
 For my Year 2 GUI Module, I created a weather app using mainly JavaScript with React, HTML and CSS.
 
+
 ## 🌧️ Main features
 
 #### Clothe Recommendations
@@ -18,8 +19,10 @@ Extra information for the hourly forecast can also be viewed when you click on t
 🌩️Ability to import personalised Timetables
 
 
+
 ## ❄️ How to run the app:
 
+(Make sure to install the latest version of Node.js and npm)
 In the project directory, you can run `npm start`.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\
 The page will reload when you make changes.
