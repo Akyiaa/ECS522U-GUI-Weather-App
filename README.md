@@ -22,7 +22,7 @@ Averaged extra weather information shown for events on the timetable
 
 ## ❄️ How to run the app:
 
-(Make sure to install the latest version of Node.js and npm)
+(Make sure to install the latest version of Node.js and npm as well as luxon (`npm i luxon`) in the directory folder)
 In the project directory, you can run `npm start`.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\
 The page will reload when you make changes.
