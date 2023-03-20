@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Kadwa&display=swap');
 @import url('https://fonts.googleapis.com/css?family=JejuMyeongjo&display=swap');
 
+/*This styling is for iPhone XR*/
 body{
-  margin: 5% 10%;
+  margin: 5% 5%;
   background-color: white;
-  width: 60%;
-  /* width: 700px;
-  height: 900px; */
+  width: 400px;
+  height: 900px;
   font-family: Kadwa, monospace;
 }
 
@@ -25,16 +25,15 @@ button{
 }
 
 /*home-btn in DISPLAY PAGE*/
-#cityloc, #add-table, #home-btn{
-  width: 20%;
-  position: absolute;
+#cityloc, #home-btn{
+  width: 50%;
+  margin-left: 27%;
   border-radius: 14px 14px;
 }
 
 #cityloc, #home-btn{
   font-size: 1.3em;
   font-weight: bold;
-  left: 15%;
 }
 
 #cityloc > img{
@@ -42,15 +41,9 @@ button{
   padding-right: 8%;
 }
 
-#add-table{
-  font-size: 1em;
-  right: 33%;
-}
-
 
 /*DISPLAY OF ALL WEATHER INFO*/
 .weatherArea{
-  background-color: #68AEFF;
   padding: 0;
   margin: 0;
 }
@@ -66,8 +59,7 @@ button{
   margin-top: 20%;
   margin-left: 10%;
   width :30%;
-  font-size: 20vw;
-  font-weight: lighter;
+  font-size: 120px;
   color: white;
   font-family: JejuMyeongjo, monospace;
 }
@@ -75,16 +67,16 @@ button{
 #clothes{
   background-color: #8BF9EB;
   border-radius: 100px 100px;
-  padding: 20px;
+  padding-top: 20px;
   margin: 30px;
-  margin-top: 30%;
-  width: 30%;
+  margin-top: 25%;
+  width: 60%;
 }
 
 #today{
   color:white;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 25px;
   text-align: left;
   padding-left: 10%;
   margin: 0px;
@@ -121,26 +113,24 @@ button{
   text-align: center;
   color: white;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 24px;
 }
 
 #time-size{
-  font-size: 2.3vw;
+  font-size: 19px;
 }
 
 
 /*FOOTER - Ready or not message*/
 .ready{
   background-color: #BBF383;
-  border: 5px solid;
   border-radius: 20px 20px;
-  border-color: #BBF383;
-  font-size: 2.3vw;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   width: 50%;
   margin: 7% 25%;
-  padding: 5px;
+  padding: 2px;
 }
 
 
@@ -148,7 +138,6 @@ button{
 #display{
   background-color: #68AEFF;
   padding: 5% 5%;
-  height: 900px;
 }
 
 #home-btn > a:link, a:visited{
@@ -157,23 +146,23 @@ button{
 }
 
 #display-top{
-  /* display: flex; */
+  display: flex;
   color: white;
   font-weight: bold;
 }
 
 #display-top > p{
   position: absolute;
-  right: 38%;
-  font-size: 2.7vw;
+  right: 25%;
+  font-size: 20px;
 }
 
 #title{
-  top: 20%;
+  top: 30%;
 }
 
 #title-time{
-  top: 25%;
+  top: 35%;
 }
 
 #display-main{
@@ -183,13 +172,13 @@ button{
 #display-loc{
   width: 90%;
   border-radius: 13px 13px;
-  font-size: 3vw;
+  font-size: 20px;
   /*top right bottom left*/
   margin-left: 5%;
 }
 
 #display-loc > img{
-  width: 3.5%;
+  width: 4%;
   padding-right: 3%;
 }
 
@@ -197,8 +186,8 @@ button{
 #display-tempfore{
   color: white;
   font-weight: bold;
-  padding: 1em;
-  font-size: 3vw;
+  padding: 10px;
+  font-size: 20px;
 }
 
 #display-tempfore > p{
@@ -210,7 +199,7 @@ button{
   background-color: rgb(245,245,245);
   border-radius: 10px 10px;
   padding: 5%;
-  font-size: 2.5vw;
+  font-size: 15px;
   margin-bottom: 5%;
 }
 

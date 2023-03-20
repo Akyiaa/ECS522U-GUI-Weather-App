@@ -13,7 +13,7 @@ function DisplayInfo(){
     //parse item array into object
     const itemObject = JSON.parse(item);
 
-    // console.log(itemObject)
+    console.log(itemObject)
     return(
         <section id="display">
             <button id="home-btn"><Link to="/">Home</Link></button>
@@ -40,12 +40,11 @@ function DisplayInfo(){
                     {/* {console.log(itemObject.item.desc)} */}
                     <p>Description: <span className="right-align">{itemObject.item.desc}</span></p>
                     <p>Humidity: <span className="right-align">{itemObject.item.humid}%</span></p>
-                    <p>Wind Speed: <span className="right-align">{itemObject.item.wind}m/s</span></p>
+                    <p>Clouds: <span className="right-align">{itemObject.item.cloud}%</span></p>
                 </div>
 
                 <div className="ready">
                     {ready(itemObject.item.main || itemObject.item.forecast)}
-                    Check out the recommended clothing!
                 </div>
 
             </section>

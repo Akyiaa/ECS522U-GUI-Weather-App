@@ -41,11 +41,11 @@ const formatForecastWeather = (data) => {
             icon: d.weather[0].icon,
             main: d.weather[0].main,
             desc: d.weather[0].description,
-            humid: d.humidity//,
-            //wind: d.wind.speed
+            humid: d.humidity,
+            cloud: d.clouds
         }
     });
-    //console.log(hourly)
+    // console.log(hourly)
     return {timezone, daily, hourly}
 };
 

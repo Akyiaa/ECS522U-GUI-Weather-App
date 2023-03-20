@@ -31,7 +31,7 @@ function App() {
   return (
     <React.Fragment>
       
-      <section className="main-container">
+      <section className="main-container" >
         <div className="topbar">
           <button id = "cityloc"> 
           <img src={location}/>

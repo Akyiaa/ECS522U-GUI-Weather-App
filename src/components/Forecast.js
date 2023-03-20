@@ -27,9 +27,9 @@ function Forecast({day, items}){
         let accumMain = []
         let accumDesc = []
         let accumHumid = []
+        let accumCloud = []
         //console.log(items)
 
-        
         let selStart = selectedDay[k].startTime.split(":")
         let selEnd = selectedDay[k].endTime.split(":")
         //console.log("selStart: " + selStart + "/ selEnd: " + selEnd)
@@ -50,6 +50,9 @@ function Forecast({day, items}){
                 accumTemp.push(items[selStartHour].temp)
                 accumIcon.push(items[selStartHour].icon)
                 accumMain.push(items[selStartHour].main)
+                accumDesc.push(items[selStartHour].desc)
+                accumHumid.push(items[selStartHour].humid)
+                accumCloud.push(items[selStartHour].cloud)
             }
             else{
                 //console.log("ELSE: start:- " + selStartHour + " end:- " + selEndHour)
@@ -63,6 +66,8 @@ function Forecast({day, items}){
                     accumMain.push(items[x].main)
                     accumDesc.push(items[x].desc)
                     accumHumid.push(items[x].humid)
+                    accumCloud.push(items[x].cloud)
+                    console.log(items[x].cloud)
                 }
             }
             
@@ -72,9 +77,10 @@ function Forecast({day, items}){
             let mainMain = findMain(accumMain)
             let mainDesc = findMain(accumDesc)
             let avgHumid = findAvg(accumHumid)
-            
+            let avgCloud = findAvg(accumCloud)
+            console.log(items)
 
-            finalArray.push({title: `${selectedDay[k].title}`, time: `${selectedDay[k].startTime} - ${selectedDay[k].endTime}`, icon: `${mainIcon}`, temp: `${avgTemp.toFixed()}`, forecast: `${mainMain}`, desc: `${mainDesc}`, humid: `${avgHumid.toFixed()}`})
+            finalArray.push({title: `${selectedDay[k].title}`, time: `${selectedDay[k].startTime} - ${selectedDay[k].endTime}`, icon: `${mainIcon}`, temp: `${avgTemp.toFixed()}`, forecast: `${mainMain}`, desc: `${mainDesc}`, humid: `${avgHumid.toFixed()}`, cloud: `${avgCloud.toFixed()}`})
         }
         else{
             //console.log(selEndHour + " less than " + currentHour)
@@ -91,7 +97,7 @@ function Forecast({day, items}){
     else{
         //console.log("info displayed!" )
         //console.log(items)
-        return(normalForecast(items))
+        //return(normalForecast(items))
         return(
             <section className="forecast-container">
                 {finalArray.map(item =>(

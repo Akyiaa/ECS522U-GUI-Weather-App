@@ -6,7 +6,7 @@ function ReadyOrNot({weather:{weather:{main}}}){
 
 const ready = (main) =>{
     if (main=="Rain" || main=="Thunderstorm"){
-        return <p>NOT Ready for uni :(</p>
+        return <p>NOT ready for uni :(</p>
     }
     else{
         return <p>Ready for uni! :)</p>
