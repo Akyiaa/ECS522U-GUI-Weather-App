@@ -7,11 +7,16 @@ const Mon = [
     {
         title: "GUI Lab",
         startTime: "16:00",
-        endTime: "20:00",
+        endTime: "18:00",
     }
     ]
     
     const Teu = [
+    {
+        title: "IPA Lab",
+        startTime: "09:00",
+        endTime: "11:00",
+    },
     {
         title: "IPA Lecture",
         startTime: "13:00",
@@ -19,8 +24,8 @@ const Mon = [
     },
     {
         title: "OS Lecture",
-        startTime: "03:00 PM",
-        endTime: "04:00 PM",
+        startTime: "15:00",
+        endTime: "16:00",
     },
     {
         title: "GUI Lecture",
@@ -28,54 +33,17 @@ const Mon = [
         endTime: "18:00",
     }
     ]
-    
-    let Wed = [
-    {
-        title: "OS Lecture",
-        startTime: "02:00 PM",
-        endTime: "04:00 PM",
-    },
-    {
-        title: "GUI Lab",
-        startTime: "16:00",
-        endTime: "18:00",
-    }
-    ]
+
     
     const Thu = [
     {
-        title: "OS Lecture",
-        startTime: "21:00",
-        endTime: "23:00",
-    },
-    {
-        title: "GUI Lab",
-        startTime: "17:00",
-        endTime: "18:00",
+        title: "IPA Lab",
+        startTime: "09:00",
+        endTime: "11:00",
     }
     ]
 
     
-    const week= {"Mon": Mon, "Tue": Teu, "Wed": Wed, "Thu":Thu}
-//expotrt Table    
+    const week= {"Mon": Mon, "Tue": Teu, "Thu":Thu}
 
 export {week}
-
-/*Input :- 
-hourly:
-    temp
-    weather:
-        main
-        icon
-        desciption
-
-//for each range of hours:
-    ->mention event title
-    ->mention time range
-    ->find average temperature
-    ->icons:
-        if same -> show one
-        if 2 -> show worst weather
-        if 2+ pick most occuring OR worst
-
-*/

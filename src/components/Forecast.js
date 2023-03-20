@@ -3,36 +3,35 @@ import { iconURLFromCode } from "../services/weatherService";
 import {week} from "../services/Table";
 import {Link} from "react-router-dom";
 
-//SHOULD HOURLY SLICE BE 0-24-> AVAILABLE FOR 24 HOURS OF THE DAY?
+/*Shows the forecast based on timetable events or hourly forecast */
 function Forecast({day, items}){
-    //console.log(items)
+    //matching the current day(day[0].title) to the day in the timetable(week[i])
     let selectedDay = week[day[0].title]
+    //stores all the averaged information for events on the timetable
     let finalArray = []; 
-    //forecastTime -> ['18:00', '19:00', '20:00', '21:00']
-    //items -> contains time, title, icon etc
+    //forecastTime -> contains time, title, icon etc of item
     let forecastTime = items.map(item =>(item.time))
+    //Array of current time info (eg split "16:00" into ["16", "00"])
     let currentArray = forecastTime[0].split(":")
-    //console.log(day[0].title)-
-  
 
     //If no timetable for the day
     if(selectedDay == undefined || selectedDay == null){
-        return(normalForecast())
+        return(normalForecast(items))
     }
 
-    for(var k=0; k<selectedDay.length; k++){//for each event in the day
-        //console.log("k: " + k)
-        let accumTemp = [] //contains all the temp for the time period
-        let accumIcon = [] 
+    //getting information for each event in the day
+    for(var k=0; k<selectedDay.length; k++){
+        
+        let accumTemp = [] //contains all the temps for the event period
+        let accumIcon = [] //contains all icons
         let accumMain = []
         let accumDesc = []
         let accumHumid = []
         let accumCloud = []
-        //console.log(items)
 
+        //getting time -(eg split "16:00" into ["16", "00"])
         let selStart = selectedDay[k].startTime.split(":")
         let selEnd = selectedDay[k].endTime.split(":")
-        //console.log("selStart: " + selStart + "/ selEnd: " + selEnd)
         
         //get first index which holds hour; eg '09', '23'
         let selStartHour = selStart[0]
@@ -42,7 +41,9 @@ function Forecast({day, items}){
         //if endTime is not less than currentTime
         //if time is 9am, can't show for something that ends at 8am
         if(selEndHour >= currentHour){
+            //if event starts and ends in same hour
             if(selStartHour == selEndHour){
+                //find the index of the start Hour in items array
                 let j = findHour(items, selStartHour)
 
                 accumTemp.push(items[j].temp)
@@ -53,15 +54,17 @@ function Forecast({day, items}){
                 accumCloud.push(items[j].cloud)
             }
             else{
-                let m = findHour(items, selStartHour)
+                let x = findHour(items, selStartHour)
                 let change;
 
-                if(selStartHour < currentHour){
+                //loop from start of event to the end of event
+                if(selStartHour < currentHour){ 
+                    //if the event has already started, loop from current hour
                     change = Number(selEndHour) - Number(currentHour) }
                 else{
                     change = Number(selEndHour) - Number(selStartHour) }
 
-                for(var x=m; x<change; x++){
+                for(; x<change; x++){
                     accumTemp.push(items[x].temp)
                     accumIcon.push(items[x].icon)
                     accumMain.push(items[x].main)
@@ -71,29 +74,26 @@ function Forecast({day, items}){
                 }
             }
             
-            /**FINDING AVERAGES**/
+            /**FINDING averages OR worst conditions**/
             let avgTemp = findAvg(accumTemp)
             let mainIcon = findMainIcon(accumIcon, accumMain)
             let mainMain = findMain(accumMain)
             let mainDesc = findMain(accumDesc)
             let avgHumid = findAvg(accumHumid)
             let avgCloud = findAvg(accumCloud)
-            //console.log(items)
 
+            //push all values into final array
             finalArray.push({title: `${selectedDay[k].title}`, time: `${selectedDay[k].startTime} - ${selectedDay[k].endTime}`, icon: `${mainIcon}`, temp: `${avgTemp.toFixed()}`, forecast: `${mainMain}`, desc: `${mainDesc}`, humid: `${avgHumid.toFixed()}`, cloud: `${avgCloud.toFixed()}`})
         }
 
     }
 
-    //RETURNING ACCUMULATED INFO
-    // console.log("finalArray")
-    // console.log(finalArray)
-    // console.log(items)
+    //if no events in timetable, final.length would be empty, show normal forecast
     if (finalArray.length == 0){
         return(normalForecast(items))
     }
     else{
-        //return(normalForecast(items))
+        //else show accumulated information from final array
         return(
             <section className="forecast-container">
                 {finalArray.map(item =>(
@@ -125,40 +125,36 @@ const normalForecast = (items) =>{
     )
 }
 
-/*FIND THE HOUR TO COLLECT INFORMATION FROM*/
+/*FIND THE items INDEX TO COLLECT INFORMATION FROM*/
 const findHour = (items, start) =>{
     for(var j in items){
         let itemTime = items[j].time.split(":")
         let startNum = Number(start)
         let itemNum = Number(itemTime[0])
+
         if(startNum < itemNum){
             return 0
         }
         if (itemNum == start){
-            console.log("j:- " + j)
             return j;
         }
     }
 }
 
-/*FINDING AVGS FUNCTIONS*/
+/*FINDING AVGS FUNCTION*/
 const findAvg = (accumArray) =>{
     let total = 0
-    //console.log("accvumTemp " + array)
     for(var x in accumArray){
-        //console.log("x: " + array[x])
         total += accumArray[x]
     }
     return total/accumArray.length
-    //console.log("avg: " + avgTemp)
 }
 
 
 /**FIND MAIN ICON**/
 const findMainIcon = (accumIcon, accumMain) =>{
-    //find main Icon
     const allEqual = accumIcom => accumIcon.every( v => v === accumIcon[0] )
-    if(allEqual){ //if true
+    if(allEqual){ //if all elements are equal
         return accumIcon[0]
     }
     else{//Choose worst
@@ -180,9 +176,8 @@ const findMainIcon = (accumIcon, accumMain) =>{
 
 /**MAIN DESCRIPTION, MAIN**/
 const findMain = (accumArray) =>{
-    //find main Icon
     const allEqual = accumArray => accumArray.every( v => v === accumArray[0] )
-    if(allEqual){ //if true
+    if(allEqual){ //if all elements are equal
         return accumArray[0]
     }
     else{//Choose worst

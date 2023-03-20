@@ -13,6 +13,7 @@ root.render(
   // <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        {/* switching between App and DisplayInfo pages */}
         <Route path="/" element={<App /> }/>
         <Route path="/displayInfo" element={<DisplayInfo/>} />
       </Routes>

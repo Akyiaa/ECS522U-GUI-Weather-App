@@ -13,13 +13,10 @@ function App() {
   const [units, setUnits] = useState("metric")
   const [weather, setWeather] = useState(null)
 
-  //fetch new weather everytime:
-  //1. first time it loads
-  //2. everytime location or unit is changed
+  //fetch new weather everytime it loads
   useEffect(() => {
     const fetchWeather = async () => {
       await getFormattedWeatherData({...query, units}).then((data) => {setWeather(data);});
-
     };
   
     fetchWeather().then(console.log(weather));
@@ -39,8 +36,7 @@ function App() {
           </button>
         </div>
 
-        {weather && (
-          //if weather is not null. if weather exists
+        {weather && ( //if weather is not null. if weather exists
         <div className='weatherArea'>
           <div className="important">
             <div id="temp">

@@ -1,9 +1,11 @@
-import { DateTime } from "luxon";
+import { DateTime } from "luxon";//Used to format date and time
 
 const API_KEY = "3771b73c35ce87aaaac32c781f8eaa5f"
 const BASE_URL = "https://api.openweathermap.org/data/2.5"
 
-//function to get data
+/*Get the weather data*/
+
+
 const getWeatherData = (infoType, searchParam) => {
     const url = new URL(BASE_URL + '/' + infoType)
     url.search = new URLSearchParams({...searchParam, appid:API_KEY})
@@ -12,7 +14,7 @@ const getWeatherData = (infoType, searchParam) => {
         .then((res) => res.json())
 };
 
-
+//get weather basics
 const formatCurrentWeather = (data) => {
     const {
         coord: {lat, lon},
@@ -25,9 +27,9 @@ const formatCurrentWeather = (data) => {
     return {lat, lon, temp, name, country, weather}
 }
 
+//get daily and hourly forecast
 const formatForecastWeather = (data) => {
     let {timezone, daily, hourly} = data
-    //showing only 3 forecasts. start from 1 becuase we want to show from next hour
     daily = daily.slice(0,1).map(d =>{
         return {
             title: formatToLocalTime(d.dt, timezone, 'ccc')
@@ -64,10 +66,10 @@ const getFormattedWeatherData = async (searchParam) => {
     return {...formattedCurrentWeather, ...formattedForecastWeather};
 }
 
-//Luxon use
-//params: seconds, timezone, format -> if you dont pass a format it has a defalt
+//Using luxon to format date
 const formatToLocalTime = (secs, zone, format = "cccc, dd LLL yyyy' | Local time:'hh:mm a") => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
+//get the icon from openweathermap api
 const iconURLFromCode = (code) => `https://openweathermap.org/img/wn/${code}@2x.png`
 
 export default getFormattedWeatherData;

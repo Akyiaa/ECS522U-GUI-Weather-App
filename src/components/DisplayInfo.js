@@ -4,17 +4,19 @@ import { ready } from "./ReadyOrNot";
 import { Link, useSearchParams } from "react-router-dom";
 import { iconURLFromCode } from "../services/weatherService";
 
+/*Shows the second page when a forecast icon is clicked */
+
 function DisplayInfo(){
 
     //get information from url
     const [searchParams, setSearchParams] = useSearchParams();
-    let item = searchParams.get("item") || searchParams.get("final")//identify param as item
-
+    //2 different parameters available in url depending on icon clicked
+    //item -> icons shown from normal hourly forecast
+    //final -> icons shown from events forecast
+    let item = searchParams.get("item") || searchParams.get("final")
     //parse item array into object
     const itemObject = JSON.parse(item);
 
-    console.log("itemObject")
-    console.log(itemObject)
     return(
         <section id="display">
             <button id="home-btn"><Link to="/">Home</Link></button>
@@ -32,13 +34,11 @@ function DisplayInfo(){
                 </button>
 
                 <div id="display-tempfore">
-                    {/* {console.log(itemObject.item.temp)} */}
                     <p>Temperature: <span className="right-align">{itemObject.item.temp}°</span></p>
                     <p>Forecast: <span className="right-align">{itemObject.item.main || itemObject.item.forecast}</span></p>
                 </div>
 
                 <div id="display-extra">
-                    {/* {console.log(itemObject.item.desc)} */}
                     <p>Description: <span className="right-align">{itemObject.item.desc}</span></p>
                     <p>Humidity: <span className="right-align">{itemObject.item.humid}%</span></p>
                     <p>Clouds: <span className="right-align">{itemObject.item.cloud}%</span></p>
@@ -54,14 +54,3 @@ function DisplayInfo(){
 }
 
 export default DisplayInfo;
-
-/*Input:
-Normal Forecast
-    Hourly[x] info
-
-Table Forecast
-    SelectedDay info
-    final Array {main icon, avg temp, //main Main}
-
-    avg/accumulated -> precipitation, humidity, wind
- */
