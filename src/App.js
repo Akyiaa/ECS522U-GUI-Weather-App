@@ -37,8 +37,6 @@ function App() {
           <img src={location}/>
           London
           </button>
-
-          <button id="add-table">Add timetable</button>
         </div>
 
         {weather && (
