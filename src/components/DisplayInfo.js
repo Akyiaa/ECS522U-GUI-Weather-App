@@ -45,7 +45,6 @@ function DisplayInfo(){
 
                 <div className="ready">
                     {ready(itemObject.item.main || itemObject.item.forecast)}
-                    Check out the recommended clothing!
                 </div>
 
             </section>
