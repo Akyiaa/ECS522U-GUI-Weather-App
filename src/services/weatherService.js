@@ -45,7 +45,7 @@ const formatForecastWeather = (data) => {
             //wind: d.wind.speed
         }
     });
-    //console.log(hourly)
+
     return {timezone, daily, hourly}
 };
 

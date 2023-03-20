@@ -38,6 +38,7 @@ function App() {
           London
           </button>
 
+          <button id="add-table">Add timetable</button>
         </div>
 
         {weather && (

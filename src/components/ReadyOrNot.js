@@ -1,19 +1,17 @@
 import React from "react";
 
 function ReadyOrNot({weather:{weather:{main}}}){
-        return(ready(main))
-}
-
-const ready = (main) =>{
-    if (main=="Rain" || main=="Thunderstorm"){
-        return <p>NOT Ready for uni :(</p>
+    const ready = () =>{
+        if (main=="rain" || main=="thunderstorm"){
+            return <p>NOT Ready for uni :(</p>
+        }
+        else{
+            return <p>Ready for uni! :)</p>
+        }
     }
-    else{
-        return <p>Ready for uni! :)</p>
-    }
-}
 
+    return(ready())
+}
 
 export default ReadyOrNot;
-export {ready}
 

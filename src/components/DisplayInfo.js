@@ -1,19 +1,16 @@
 import React from "react";
 import location from '../icons/location.png'
-import { ready } from "./ReadyOrNot";
 import { Link, useSearchParams } from "react-router-dom";
 import { iconURLFromCode } from "../services/weatherService";
 
 function DisplayInfo(){
-
     //get information from url
     const [searchParams, setSearchParams] = useSearchParams();
-    let item = searchParams.get("item") || searchParams.get("final")//identify param as item
-
+    const item = searchParams.get("item") //identify param as item
     //parse item array into object
     const itemObject = JSON.parse(item);
 
-    // console.log(itemObject)
+    console.log(itemObject)
     return(
         <section id="display">
             <button id="home-btn"><Link to="/">Home</Link></button>
@@ -21,8 +18,8 @@ function DisplayInfo(){
             <section id="display-main">
                 <div id = "display-top">
                     <img src={iconURLFromCode(itemObject.item.icon)} width="200vw"/>
-                    <p id="title">{itemObject.item.main || itemObject.item.title}</p>
-                    <p id="title-time">{itemObject.item.time}</p>
+                    <p id="main">{itemObject.item.main}</p>
+                    <p id="main-time">{itemObject.item.time}</p>
                 </div>
 
                 <button id = "display-loc"> 
@@ -32,8 +29,8 @@ function DisplayInfo(){
 
                 <div id="display-tempfore">
                     {/* {console.log(itemObject.item.temp)} */}
-                    <p>Temperature: <span className="right-align">{itemObject.item.temp}°</span></p>
-                    <p>Forecast: <span className="right-align">{itemObject.item.main || itemObject.item.forecast}</span></p>
+                    <p>Temperature: <span class="right-align">{itemObject.item.temp}°</span></p>
+                    <p>Forecast: <span class="right-align">{itemObject.item.main}</span></p>
                 </div>
 
                 <div id="display-extra">
@@ -53,6 +50,21 @@ function DisplayInfo(){
 }
 
 export default DisplayInfo;
+
+/*Accessing Link/info
+// your link creation
+const newTo = { 
+  pathname: "/category/595212758daa6810cbba4104", 
+  param1: "Par1" 
+};
+// link to the "location"
+// see (https://reacttraining.com/react-router/web/api/location)
+<Link to={newTo}> </Link>
+
+// In your Category Component, you can access the data like this
+this.props.match.params.catId // this is 595212758daa6810cbba4104 
+this.props.location.param1 // this is Par1
+*/
 
 /*Input:
 Normal Forecast
