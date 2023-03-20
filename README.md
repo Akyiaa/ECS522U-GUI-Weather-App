@@ -5,13 +5,13 @@ For my Year 2 GUI Module, I created a weather app using mainly JavaScript with R
 
 ## 🌧️ Main features
 
-#### Clothe Recommendations
+#### 💧 Clothe Recommendations
 The app recommends clothes to user depending on the temperature and general weather conditions
 
-#### Timetable-Specific
+#### 💧 Timetable-Specific
 The app shows the weather for certain times specified by a pre-entered timetable. On days where there are no events on the timetable, or after all events on the timetable have been completed, the normal hourly forecast is shown. 
 
-#### Extra weather information
+#### 💧 Extra weather information
 Extra information for the hourly forecast can also be viewed when you click on the forecast icon.\
 Averaged extra weather information shown for events on the timetable
 
