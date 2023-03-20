@@ -62,7 +62,7 @@ function App() {
             </div>
           </div>
 
-          <footer id="ready">
+          <footer className="ready">
             <ReadyOrNot weather={weather}/>
           </footer>
 

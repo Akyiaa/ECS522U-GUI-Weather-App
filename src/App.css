@@ -5,6 +5,8 @@ body{
   margin: 5% 10%;
   background-color: white;
   width: 60%;
+  /* width: 700px;
+  height: 900px; */
   font-family: Kadwa, monospace;
 }
 
@@ -91,8 +93,7 @@ button{
 /*Daily/Timetable FORECAST DISPLAY AREA*/
 #forecast-area{
   background-color: #D9D9D980;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px 0;
 }
 
 .center{
@@ -100,10 +101,15 @@ button{
   width: 50%;
 }
 
+.center> p{
+  width: 127px;
+}
+
 /***IN FORECAST PAGE***/
 .forecast-container {
   display: flex;
   justify-content: center;
+  width: 70%;
 }
 
 .forecast-container > div{
@@ -124,7 +130,7 @@ button{
 
 
 /*FOOTER - Ready or not message*/
-#ready{
+.ready{
   background-color: #BBF383;
   border: 5px solid;
   border-radius: 20px 20px;
@@ -132,7 +138,9 @@ button{
   font-size: 2.3vw;
   font-weight: bold;
   text-align: center;
-  margin: 2% 30%;
+  width: 50%;
+  margin: 7% 25%;
+  padding: 5px;
 }
 
 
@@ -140,6 +148,7 @@ button{
 #display{
   background-color: #68AEFF;
   padding: 5% 5%;
+  height: 900px;
 }
 
 #home-btn > a:link, a:visited{
@@ -159,12 +168,12 @@ button{
   font-size: 2.7vw;
 }
 
-#main{
-  top: 26%;
+#title{
+  top: 20%;
 }
 
-#main-time{
-  top: 31%;
+#title-time{
+  top: 25%;
 }
 
 #display-main{
@@ -175,6 +184,7 @@ button{
   width: 90%;
   border-radius: 13px 13px;
   font-size: 3vw;
+  /*top right bottom left*/
   margin-left: 5%;
 }
 
