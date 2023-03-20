@@ -42,32 +42,32 @@ function Forecast({day, items}){
         //if endTime is not less than currentTime
         //if time is 9am, can't show for something that ends at 8am
         if(selEndHour >= currentHour){
-            //console.log("end Hour: " + selEndHour + " is greater/= to current hour: " + currentHour)
-            //get the information from currentTime to endTime
-            //from 9-11
             if(selStartHour == selEndHour){
-                //console.log("EQUAL")
-                accumTemp.push(items[selStartHour].temp)
-                accumIcon.push(items[selStartHour].icon)
-                accumMain.push(items[selStartHour].main)
-                accumDesc.push(items[selStartHour].desc)
-                accumHumid.push(items[selStartHour].humid)
-                accumCloud.push(items[selStartHour].cloud)
+                let j = findHour(items, selStartHour)
+
+                accumTemp.push(items[j].temp)
+                accumIcon.push(items[j].icon)
+                accumMain.push(items[j].main)
+                accumDesc.push(items[j].desc)
+                accumHumid.push(items[j].humid)
+                accumCloud.push(items[j].cloud)
             }
             else{
-                //console.log("ELSE: start:- " + selStartHour + " end:- " + selEndHour)
-                //works when have same num of digits. eg 7-8, 18-21
-                for(var x=Number(selStartHour); x<=Number(selEndHour); x++){
-                    //console.log("for loop between: " + selStartHour + " and " + selEndHour)
-                    //console.log("x: " + x)
-                    //console.log(items[x])
+                let m = findHour(items, selStartHour)
+                let change;
+
+                if(selStartHour < currentHour){
+                    change = Number(selEndHour) - Number(currentHour) }
+                else{
+                    change = Number(selEndHour) - Number(selStartHour) }
+
+                for(var x=m; x<change; x++){
                     accumTemp.push(items[x].temp)
                     accumIcon.push(items[x].icon)
                     accumMain.push(items[x].main)
                     accumDesc.push(items[x].desc)
                     accumHumid.push(items[x].humid)
                     accumCloud.push(items[x].cloud)
-                    console.log(items[x].cloud)
                 }
             }
             
@@ -78,25 +78,21 @@ function Forecast({day, items}){
             let mainDesc = findMain(accumDesc)
             let avgHumid = findAvg(accumHumid)
             let avgCloud = findAvg(accumCloud)
-            console.log(items)
+            //console.log(items)
 
             finalArray.push({title: `${selectedDay[k].title}`, time: `${selectedDay[k].startTime} - ${selectedDay[k].endTime}`, icon: `${mainIcon}`, temp: `${avgTemp.toFixed()}`, forecast: `${mainMain}`, desc: `${mainDesc}`, humid: `${avgHumid.toFixed()}`, cloud: `${avgCloud.toFixed()}`})
-        }
-        else{
-            //console.log(selEndHour + " less than " + currentHour)
         }
 
     }
 
     //RETURNING ACCUMULATED INFO
-    //console.log(finalArray)
+    // console.log("finalArray")
+    // console.log(finalArray)
+    // console.log(items)
     if (finalArray.length == 0){
-        //console.log("no timetable info to display yet")
         return(normalForecast(items))
     }
     else{
-        //console.log("info displayed!" )
-        //console.log(items)
         //return(normalForecast(items))
         return(
             <section className="forecast-container">
@@ -127,6 +123,22 @@ const normalForecast = (items) =>{
             ))}
         </section>
     )
+}
+
+/*FIND THE HOUR TO COLLECT INFORMATION FROM*/
+const findHour = (items, start) =>{
+    for(var j in items){
+        let itemTime = items[j].time.split(":")
+        let startNum = Number(start)
+        let itemNum = Number(itemTime[0])
+        if(startNum < itemNum){
+            return 0
+        }
+        if (itemNum == start){
+            console.log("j:- " + j)
+            return j;
+        }
+    }
 }
 
 /*FINDING AVGS FUNCTIONS*/

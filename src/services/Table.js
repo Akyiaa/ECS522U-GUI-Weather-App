@@ -1,5 +1,3 @@
-import React from "react";
-
 const Mon = [
     {
         title: "OS Lecture",
@@ -9,7 +7,7 @@ const Mon = [
     {
         title: "GUI Lab",
         startTime: "16:00",
-        endTime: "18:00",
+        endTime: "20:00",
     }
     ]
     
@@ -57,25 +55,8 @@ const Mon = [
     }
     ]
 
-    const Sat = [
-        {
-            title: "OS Lecture",
-            startTime: "5:00",
-            endTime: "10:00",
-        },
-        {
-            title: "GUI Lab",
-            startTime: "13:00",
-            endTime: "13:15",
-        },
-        {
-            title: "IPA Meeting",
-            startTime: "18:00",
-            endTime: "21:15",
-        }
-        ]
     
-    const week= {"Mon": Mon, "Tue": Teu, "Wed": Wed, "Thu":Thu, "Sat": Sat}
+    const week= {"Mon": Mon, "Tue": Teu, "Wed": Wed, "Thu":Thu}
 //expotrt Table    
 
 export {week}

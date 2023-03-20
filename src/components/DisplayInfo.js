@@ -13,6 +13,7 @@ function DisplayInfo(){
     //parse item array into object
     const itemObject = JSON.parse(item);
 
+    console.log("itemObject")
     console.log(itemObject)
     return(
         <section id="display">

@@ -34,7 +34,7 @@ const formatForecastWeather = (data) => {
         }
     });
 
-    hourly = hourly.slice(0,24).map(d =>{
+    hourly = hourly.slice(0,5).map(d =>{
         return {
             time: formatToLocalTime(d.dt, timezone, 'HH:mm'),
             temp: d.temp,
@@ -45,7 +45,7 @@ const formatForecastWeather = (data) => {
             cloud: d.clouds
         }
     });
-    // console.log(hourly)
+    
     return {timezone, daily, hourly}
 };
 
