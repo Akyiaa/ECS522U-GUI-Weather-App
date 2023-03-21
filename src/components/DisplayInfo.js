@@ -23,9 +23,11 @@ function DisplayInfo(){
             
             <section id="display-main">
                 <div id = "display-top">
-                    <img src={iconURLFromCode(itemObject.item.icon)} width="200vw"/>
-                    <p id="title">{itemObject.item.main || itemObject.item.title}</p>
-                    <p id="title-time">{itemObject.item.time}</p>
+                    <img src={iconURLFromCode(itemObject.item.icon)} width="150vw"/>
+                    <span className="right-align">
+                        <p id="title">{itemObject.item.main || itemObject.item.title}</p>
+                        <p id="title-time">{itemObject.item.time}</p>
+                    </span>
                 </div>
 
                 <button id = "display-loc"> 

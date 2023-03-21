@@ -4,7 +4,7 @@
 body{
   margin: 5% 5%;
   background-color: white;
-  width: 400px;
+  width: 435px;
   height: 900px;
   font-family: Kadwa, monospace;
 }
@@ -112,7 +112,8 @@ button{
   text-align: center;
   color: white;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
+  padding: 0% 10%;
 }
 
 #time-size{
@@ -150,22 +151,24 @@ button{
   font-weight: bold;
 }
 
+#display-top >img{
+  padding-right: 20%;
+}
+
 #display-top > p{
-  position: absolute;
-  right: 25%;
   font-size: 20px;
 }
 
 #title{
-  top: 30%;
+  margin-top: 35%;
 }
 
 #title-time{
-  top: 35%;
+  margin-top: 5%;
 }
 
 #display-main{
-  margin-top: 20%;
+  margin-top: 8%;
 }
 
 #display-loc{
@@ -174,6 +177,7 @@ button{
   font-size: 20px;
   /*top right bottom left*/
   margin-left: 5%;
+  margin-top: 10%;
 }
 
 #display-loc > img{
@@ -187,6 +191,8 @@ button{
   font-weight: bold;
   padding: 10px;
   font-size: 20px;
+  margin-top: 7%;
+  margin-bottom: 7%;
 }
 
 #display-tempfore > p{
@@ -198,8 +204,8 @@ button{
   background-color: rgb(245,245,245);
   border-radius: 10px 10px;
   padding: 5%;
-  font-size: 15px;
-  margin-bottom: 5%;
+  font-size: 16px;
+  margin-bottom: 20%;
 }
 
 #display-extra > p{

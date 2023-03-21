@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 /*Shows the forecast based on timetable events or hourly forecast */
 function Forecast({day, items}){
+
     //matching the current day(day[0].title) to the day in the timetable(week[i])
     let selectedDay = week[day[0].title]
     //stores all the averaged information for events on the timetable
@@ -34,9 +35,9 @@ function Forecast({day, items}){
         let selEnd = selectedDay[k].endTime.split(":")
         
         //get first index which holds hour; eg '09', '23'
-        let selStartHour = selStart[0]
-        let selEndHour = selEnd[0]
-        let currentHour = currentArray[0]
+        let selStartHour = Number(selStart[0])
+        let selEndHour = Number(selEnd[0])
+        let currentHour = Number(currentArray[0])
 
         //if endTime is not less than currentTime
         //if time is 9am, can't show for something that ends at 8am
@@ -54,23 +55,24 @@ function Forecast({day, items}){
                 accumCloud.push(items[j].cloud)
             }
             else{
-                let x = findHour(items, selStartHour)
+                let m = findHour(items, selStartHour)
                 let change;
 
                 //loop from start of event to the end of event
                 if(selStartHour < currentHour){ 
                     //if the event has already started, loop from current hour
-                    change = Number(selEndHour) - Number(currentHour) }
+                    change = selEndHour - currentHour }
                 else{
-                    change = Number(selEndHour) - Number(selStartHour) }
-
-                for(; x<change; x++){
-                    accumTemp.push(items[x].temp)
-                    accumIcon.push(items[x].icon)
-                    accumMain.push(items[x].main)
-                    accumDesc.push(items[x].desc)
-                    accumHumid.push(items[x].humid)
-                    accumCloud.push(items[x].cloud)
+                    change = selEndHour - selStartHour }
+                
+                for(var x=0; x<change; x++){
+                    accumTemp.push(items[m].temp)
+                    accumIcon.push(items[m].icon)
+                    accumMain.push(items[m].main)
+                    accumDesc.push(items[m].desc)
+                    accumHumid.push(items[m].humid)
+                    accumCloud.push(items[m].cloud)
+                    m++;
                 }
             }
             
@@ -81,7 +83,7 @@ function Forecast({day, items}){
             let mainDesc = findMain(accumDesc)
             let avgHumid = findAvg(accumHumid)
             let avgCloud = findAvg(accumCloud)
-
+            
             //push all values into final array
             finalArray.push({title: `${selectedDay[k].title}`, time: `${selectedDay[k].startTime} - ${selectedDay[k].endTime}`, icon: `${mainIcon}`, temp: `${avgTemp.toFixed()}`, forecast: `${mainMain}`, desc: `${mainDesc}`, humid: `${avgHumid.toFixed()}`, cloud: `${avgCloud.toFixed()}`})
         }
@@ -129,15 +131,12 @@ const normalForecast = (items) =>{
 const findHour = (items, start) =>{
     for(var j in items){
         let itemTime = items[j].time.split(":")
-        let startNum = Number(start)
         let itemNum = Number(itemTime[0])
 
-        if(startNum < itemNum){
-            return 0
-        }
+        if(start < itemNum){
+            return 0 }
         if (itemNum == start){
-            return j;
-        }
+            return j; }
     }
 }
 
@@ -153,50 +152,36 @@ const findAvg = (accumArray) =>{
 
 /**FIND MAIN ICON**/
 const findMainIcon = (accumIcon, accumMain) =>{
-    const allEqual = accumIcom => accumIcon.every( v => v === accumIcon[0] )
-    if(allEqual){ //if all elements are equal
-        return accumIcon[0]
+    //choose worst condition
+    for(var g=0; g<accumMain.length; g++){
+        if (accumMain[g] == "Thunderstorm"){//thunderstorm
+            return accumIcon[g] }
+        else if(accumMain[g] == "Snow"){//snow
+            return accumIcon[g] }
+        else if(accumMain[g] == "Rain"){//rain
+            return accumIcon[g] }
+        else if(accumMain[g] == "Drizzle"){//drizzle
+            return accumIcon[g] }
     }
-    else{//Choose worst
-        for(var g=0; g<accumMain.length; g++){
-            if (accumMain[g] == "Thunderstorm"){//thunderstorm
-                return accumIcon[g] }
-            else if(accumMain[g] == "Snow"){//snow
-                return accumIcon[g] }
-            else if(accumMain[g] == "Rain"){//rain
-                return accumIcon[g] }
-            else if(accumMain[g] == "Drizzle"){//drizzle
-                return accumIcon[g] }
-            else{
-                return accumIcon[0]
-            }
-        }
-    }
+    return accumIcon[0]
 }
 
 /**MAIN DESCRIPTION, MAIN**/
 const findMain = (accumArray) =>{
-    const allEqual = accumArray => accumArray.every( v => v === accumArray[0] )
-    if(allEqual){ //if all elements are equal
-        return accumArray[0]
+    //Choose worst condition
+    for(var g=0; g<accumArray.length; g++){
+        if (accumArray[g].includes("heavy")){ //this branch is specific to the description
+            return accumArray[g] }
+        else if(accumArray[g].includes("thunderstorm")){
+            return accumArray[g] }
+        else if(accumArray[g].includes("snow")){
+            return accumArray[g] }
+        else if(accumArray[g].includes("rain")){
+            return accumArray[g] }
+        else if(accumArray[g].includes("drizzle")){
+            return accumArray[g] }
     }
-    else{//Choose worst
-        for(var g=0; g<accumArray.length; g++){
-            if (accumArray[g].includes("heavy")){ //this branch is specific to the description
-                return accumArray[g] }
-            else if(accumArray[g].includes("Thunderstorm")){
-                return accumArray[g] }
-            else if(accumArray[g].includes("Snow")){
-                return accumArray[g] }
-            else if(accumArray[g].includes("Rain")){
-                return accumArray[g] }
-            else if(accumArray[g].includes("Drizzle")){
-                return accumArray[g] }
-            else{
-                return accumArray[0]
-            }
-        }
-    }
+    return accumArray[0]
 }
 
 export default Forecast;

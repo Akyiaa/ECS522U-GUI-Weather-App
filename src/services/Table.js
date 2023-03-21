@@ -13,11 +13,6 @@ const Mon = [
     
     const Teu = [
     {
-        title: "IPA Lab",
-        startTime: "09:00",
-        endTime: "11:00",
-    },
-    {
         title: "IPA Lecture",
         startTime: "13:00",
         endTime: "15:00",
