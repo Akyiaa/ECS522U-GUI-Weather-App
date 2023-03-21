@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 /*Shows the forecast based on timetable events or hourly forecast */
 function Forecast({day, items}){
 
-    console.log(items)
     //matching the current day(day[0].title) to the day in the timetable(week[i])
     let selectedDay = week[day[0].title]
     //stores all the averaged information for events on the timetable
