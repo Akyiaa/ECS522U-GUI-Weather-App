@@ -41,7 +41,8 @@ function Forecast({day, items}){
 
         //if endTime is not less than currentTime
         //if time is 9am, can't show for something that ends at 8am
-        if(selEndHour >= currentHour){
+        console.log("end: " + selEndHour + "current: " + currentHour)
+        if(selEndHour > currentHour){
             //if event starts and ends in same hour
             if(selStartHour == selEndHour){
                 //find the index of the start Hour in items array
