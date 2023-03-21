@@ -22,7 +22,7 @@ Averaged extra weather information shown for events on the timetable
 
 ## ❄️ How to run the app:
 
-1. Make sure to install the latest version of the following:
+1. Make sure to install the latest version of the following:\
    Node.js and npm\
    Luxon (`npm i luxon`)\
    React Router (`npm install react-router-dom@6` (6 is the latest version))
