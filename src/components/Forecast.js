@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 /*Shows the forecast based on timetable events or hourly forecast */
 function Forecast({day, items}){
 
+    console.log(items)
     //matching the current day(day[0].title) to the day in the timetable(week[i])
     let selectedDay = week[day[0].title]
     //stores all the averaged information for events on the timetable
@@ -39,9 +40,9 @@ function Forecast({day, items}){
         let selEndHour = Number(selEnd[0])
         let currentHour = Number(currentArray[0])
 
-        //if endTime is not less than currentTime
-        //if time is 9am, can't show for something that ends at 8am
-        console.log("end: " + selEndHour + "current: " + currentHour)
+        //Forecast for events that have not ended should be shown
+        //if an event is from 12-14 and the current time is 10, 14>10
+        //if an event is from 12-14 and the current time is 18, 14<18
         if(selEndHour > currentHour){
             //if event starts and ends in same hour
             if(selStartHour == selEndHour){
