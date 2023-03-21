@@ -28,8 +28,8 @@ Averaged extra weather information shown for events on the timetable
    React Router (`npm install react-router-dom@6` (6 is the latest version))
 
    In case of any errors please try the following commands:\
-   npm i react-accessible-accordion\
-   npm i react-select-async-paginate --force
+   `npm i react-accessible-accordion`\
+   `npm i react-select-async-paginate --force`
    
 2. In the project directory, you can run `npm start`.
 
