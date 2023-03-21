@@ -24,8 +24,8 @@ Averaged extra weather information shown for events on the timetable
 
 1. Make sure to install the latest version of the following:\
    Node.js and npm\
-   Luxon (`npm i luxon` npm (else try `install --save luxon))\
-   React Router (`npm install react-router-dom@6` (6 is the latest version))
+   Luxon (`npm i luxon`) (else try `npm install --save luxon)\
+   React Router (`npm install react-router-dom@6`) (6 is the latest version of React)
 
    In case of any errors please try the following commands:\
    `npm i react-accessible-accordion`\
