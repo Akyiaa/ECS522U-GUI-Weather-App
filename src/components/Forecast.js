@@ -10,7 +10,7 @@ function Forecast({day, items}){
     let selectedDay = week[day[0].title]
     //stores all the averaged information for events on the timetable
     let finalArray = []; 
-    //forecastTime -> contains time, title, icon etc of item
+    //forecastTime -> contains time of item
     let forecastTime = items.map(item =>(item.time))
     //Array of current time info (eg split "16:00" into ["16", "00"])
     let currentArray = forecastTime[0].split(":")
@@ -24,7 +24,7 @@ function Forecast({day, items}){
     for(var k=0; k<selectedDay.length; k++){
         
         let accumTemp = [] //contains all the temps for the event period
-        let accumIcon = [] //contains all icons
+        let accumIcon = [] //contains all icons ...
         let accumMain = []
         let accumDesc = []
         let accumHumid = []
@@ -35,13 +35,14 @@ function Forecast({day, items}){
         let selEnd = selectedDay[k].endTime.split(":")
         
         //get first index which holds hour; eg '09', '23'
+        //and convert to number/int
         let selStartHour = Number(selStart[0])
         let selEndHour = Number(selEnd[0])
         let currentHour = Number(currentArray[0])
 
         //Forecast for events that have not ended should be shown
-        //if an event is from 12-14 and the current time is 10, 14>10
-        //if an event is from 12-14 and the current time is 18, 14<18
+        //if an event is from 12-14 and the current time is 10, 14>10, therefore show
+        //if an event is from 12-14 and the current time is 18, 14<18, therefore hide
         if(selEndHour > currentHour){
             //if event starts and ends in same hour
             if(selStartHour == selEndHour){
@@ -56,16 +57,20 @@ function Forecast({day, items}){
                 accumCloud.push(items[j].cloud)
             }
             else{
+                //find the index of the start Hour in items array
                 let m = findHour(items, selStartHour)
                 let change;
 
                 //loop from start of event to the end of event
+                //by finding the number of house between the event, i.e change
                 if(selStartHour < currentHour){ 
                     //if the event has already started, loop from current hour
                     change = selEndHour - currentHour }
                 else{
                     change = selEndHour - selStartHour }
                 
+                //add the index of the event hour; m
+                //for the amount of time the event occurs; change hours
                 for(var x=0; x<change; x++){
                     accumTemp.push(items[m].temp)
                     accumIcon.push(items[m].icon)
@@ -73,7 +78,7 @@ function Forecast({day, items}){
                     accumDesc.push(items[m].desc)
                     accumHumid.push(items[m].humid)
                     accumCloud.push(items[m].cloud)
-                    m++;
+                    m++; //increase hour index each time
                 }
             }
             

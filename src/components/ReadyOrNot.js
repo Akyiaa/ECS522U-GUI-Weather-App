@@ -17,4 +17,4 @@ const ready = (main) =>{
 
 
 export default ReadyOrNot;
-export {ready}
+export {ready} //this function is used in DisplayInfo.js

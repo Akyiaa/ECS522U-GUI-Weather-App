@@ -11,8 +11,8 @@ function DisplayInfo(){
     //get information from url
     const [searchParams, setSearchParams] = useSearchParams();
     //2 different parameters available in url depending on icon clicked
-    //item -> icons shown from normal hourly forecast
-    //final -> icons shown from events forecast
+    //item -> info shown from normal hourly forecast
+    //final -> info shown from events forecast
     let item = searchParams.get("item") || searchParams.get("final")
     //parse item array into object
     const itemObject = JSON.parse(item);

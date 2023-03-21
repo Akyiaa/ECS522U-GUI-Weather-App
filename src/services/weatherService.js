@@ -5,7 +5,7 @@ const BASE_URL = "https://api.openweathermap.org/data/2.5"
 
 /*Get the weather data*/
 
-
+//gettting weather data using API key
 const getWeatherData = (infoType, searchParam) => {
     const url = new URL(BASE_URL + '/' + infoType)
     url.search = new URLSearchParams({...searchParam, appid:API_KEY})
