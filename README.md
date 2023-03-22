@@ -24,7 +24,7 @@ Averaged extra weather information shown for events on the timetable
 
 1. Make sure to install the latest version of the following:\
    Node.js\
-   npm\
+   npm
    
    In case of any errors please try the following commands:\
    Luxon (`npm i luxon`) (else try `npm install --save luxon`)\
